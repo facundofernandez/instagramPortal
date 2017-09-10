@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Acme');
+
+*{
+  margin:0;padding:0;box-sizing: border-box;transition:1s all;
+}
+
+
+body{
+  background: black;
+  color:white;
+}
+
+#app{
+
+  width: 100%;
+
+}
+
+
+
+.contenedor{
+
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top:0;
+
+}
+
+
+
+.post{
+  position: relative; opacity: 0;
+  background: linear-gradient(
+    to right bottom,
+    grey 40%,
+    #ADAAAA 50%
+  );
+  width: 600px;
+  padding: 0 35px 35px;
+  border-radius: 0 0 20px 20px;
+  margin:0px auto;
+  top:50%;
+  transform: translate(0,-60%);
+  border-bottom:10px solid #E37171;
+
+  &__text{
+    font-size:40px;
+    text-align: center;
+    padding:20px;
+    color:black;
+    font-family: 'Acme', sans-serif;
+    text-shadow: 1px 1px #E37171;
+  }
+
+  &__user{
+    transform: translate(-35px);
+    width: 600px;
+    display: inline-block;
+    position: relative;
+    background: rgba(#E37171,.8);
+    padding:10px 10px 10px 110px;
+    font-family: 'Lobster', cursive;
+    color:black;
+    &-name{
+      font-size: 35px;
+    }
+    &-username{
+      font-size: 25px;
+    }
+
+    &-img{
+      width: 130px;
+      border-radius: 50%;
+      border:5px solid white;
+      position: absolute;
+      left:0;top:0;
+      transform: translate(-50%,-18%);
+
+    }
+  }
+
+  &__img{
+    width: 100%;
+    border:5px solid #555;
+  }
+}
+.mostrar{
+  opacity: 1;
+  transform: translate(0,-50%);
+}
