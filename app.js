@@ -1,3 +1,6 @@
+
+
+
 window.Instagram = {
   config: {},
 
@@ -49,7 +52,8 @@ Instagram.init({client_id:'2263791091.1b7b806.c94f83caaa1741beb3b11b2fce4830f2'}
 let setPost = new Set();
 let arr_post = [];
 obtenerTags();
-setInterval( obtenerTags, 30000)
+mostrarPost();
+setInterval( obtenerTags, 60000)
 
 
 function obtenerTags(){
@@ -63,70 +67,70 @@ function obtenerTags(){
     for(dato of datos) {
 
       if(!setPost.has(dato.id)){
-        arr_post.push( {
+        let elem = {
           id: dato.id,
           images: dato.images,
           user: dato.caption.from,
           text: dato.caption.text
 
-        });
+        };
+        arr_post.push(elem);
         setPost.add(dato.id);
+        insertarHtml(elem);
       }
     }
+
+
 
   });
 
 }
 
-let n=0;
-let h = window.innerHeight;
-setInterval(function(){
-  let dato = arr_post.pop();
-  //console.log(dato)
-  if( typeof dato != "undefined"){
-    let template = `
-    <div class="contenedor">
-    <div id="id${n}" class="post">
+function insertarHtml(dato){
 
-      <div class="post__user">
-        <h3 class="post__user-name">${dato.user.full_name}</h3>
-        <span class="post__user-username">${dato.user.username}</span>
-        <img src="${dato.user.profile_picture}" alt="" class="post__user-img">
-      </div>
+  let template = `
+  <div class="contenedor">
+  <div id="id${dato.id}" class="post">
 
-      <h3 class="post__text">${dato.text}</h3>
-      <img src="${dato.images.standard_resolution.url}" alt="" class="post__img">
-
+    <div class="post__user">
+      <h3 class="post__user-name">${dato.user.full_name}</h3>
+      <span class="post__user-username">${dato.user.username}</span>
+      <img src="${dato.user.profile_picture}" alt="" class="post__user-img">
     </div>
-    </div>
-    `;
+
+    <h3 class="post__text">${dato.text}</h3>
+    <img src="${dato.images.standard_resolution.url}" alt="" class="post__img">
+
+  </div>
+  </div>
+  `;
+
+  let html = template + document.getElementById("app").innerHTML;
+  document.getElementById("app").innerHTML = html;
+
+}
+
+function mostrarPost(){
+
+  let eTime = 8 * 1000;
+
+  setInterval(function(){
+
+    let eMostrarCurrent = (document.getElementsByClassName('mostrar').length) ? document.getElementsByClassName('mostrar')[0].id : null;
+
+    let elem = arr_post.shift();
+
+    if(eMostrarCurrent !== null)
+      document.getElementById(eMostrarCurrent).classList.toggle('mostrar');
 
 
+    arr_post.push(elem);
 
+    document.getElementById('id'+elem.id).classList.toggle('mostrar');
+  },eTime)
 
-    let html = template + document.getElementById("app").innerHTML;
+};
 
-    document.getElementById("app").innerHTML = html;
-
-
-    if(n==0){
-      document.getElementById(`id0`).classList.toggle('mostrar');
-    }else{
-      let t = n;
-      setTimeout(function(){
-        document.getElementById(`id${t-1}`).classList.toggle('mostrar');
-        setTimeout(function(){
-          document.getElementById(`id${t}`).classList.toggle('mostrar');
-        },1000)
-      },5000)
-
-
-    }
-    n++;
-   // h+=window.innerHeight;
-
-
-  }
-},3000)
-
-
+function cambiarFondo(){
+  console.log("click")
+}
