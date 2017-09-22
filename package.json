@@ -1,7 +1,7 @@
 {
   "name": "Instagram",
   "version": "1.0.0",
-  "description": "",
+  "description": "Creación de un panel para visualizar fotos de instagram con el tag indicado.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,16 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/facundofernandez/instagramPortal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/facundofernandez/instagramPortal/issues"
+  },
+  "homepage": "https://github.com/facundofernandez/instagramPortal#readme",
+  "dependencies": {
+    "express": "^4.15.4"
   }
 }
